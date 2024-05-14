@@ -2,7 +2,7 @@
 
 # Project Overview
 
-Sistem rekomendasi telah menjadi inti dari banyak platform online, memungkinkan pengguna untuk menemukan konten yang sesuai dengan minat dan preferensi mereka. Dua pendekatan yang umum digunakan dalam pengembangan sistem rekomendasi adalah Content Based Filtering (CBF) dan Collaborative Filtering (CF). Dalam CBF, rekomendasi didasarkan pada analisis terhadap atribut-atribut konten yang terkait dengan item yang direkomendasikan, seperti teks, metadata, atau fitur lainnya. Sebaliknya, CF mengandalkan pola perilaku pengguna untuk menghasilkan rekomendasi, dengan mengidentifikasi kesamaan antara preferensi pengguna yang serupa. Penggabungan kedua pendekatan ini dapat meningkatkan kualitas rekomendasi dengan memperhitungkan baik konten item maupun interaksi pengguna. Oleh karena itu, penelitian ini bertujuan untuk membandingkan efektivitas kedua metode tersebut dalam konteks sistem rekomendasi buku, dengan harapan dapat memberikan wawasan yang berharga bagi pengembangan sistem rekomendasi yang lebih canggih dan personal.
+Sistem rekomendasi telah menjadi inti dari banyak platform online, memungkinkan pengguna untuk menemukan konten yang sesuai dengan minat dan preferensi mereka. Dua pendekatan yang umum digunakan dalam pengembangan sistem rekomendasi adalah Content Based Filtering (CBF) dan Collaborative Filtering (CF). Dalam CBF, rekomendasi didasarkan pada analisis terhadap atribut-atribut konten yang terkait dengan item yang direkomendasikan, seperti teks, metadata, atau fitur lainnya. Sebaliknya, CF mengandalkan pola perilaku pengguna untuk menghasilkan rekomendasi, dengan mengidentifikasi kesamaan antara preferensi pengguna yang serupa[[1]](https://ieeexplore.ieee.org/abstract/document/7684166?casa_token=oDbhmlwVkn8AAAAA:57XkjHpU74_TMag16JMEmzDyj3Hv2Ei0K12NHjfxTeIpF7GcZaFb2x9feWjD31r1lsjVLt61HAR-OT0). Penggabungan kedua pendekatan ini dapat meningkatkan kualitas rekomendasi dengan memperhitungkan baik konten item maupun interaksi pengguna. Oleh karena itu, penelitian ini bertujuan untuk membandingkan efektivitas kedua metode tersebut dalam konteks sistem rekomendasi buku, dengan harapan dapat memberikan wawasan yang berharga bagi pengembangan sistem rekomendasi yang lebih canggih dan personal.
 
 # Business Understanding
 ## Problem Statement
@@ -25,24 +25,25 @@ Variabel-variabel pada The New Chapter(book recommendation system adalah sebagai
 
 Pada projek kali ini variabel yang dipakai adalah
 - newbooks :
-  1. book_id: ID unik untuk setiap buku dalam sistem rekomendasi.
-  2. goodreads_book_id: ID buku yang terkait dengan platform Goodreads, dapat digunakan untuk mendapatkan informasi tambahan tentang buku dari Goodreads.
-  3. authors: Nama-nama penulis dari buku tersebut.
-  4. original_publication_year: Tahun publikasi asli dari buku tersebut.
-  5. original_title: Judul asli dari buku tersebut (jika berbeda dengan judul terjemahan).
-  6. title: Judul dari buku tersebut (dapat berupa judul terjemahan).
-  7. language_code: Kode bahasa buku (misalnya, "en" untuk bahasa Inggris).
-  8. average_rating: Rata-rata peringkat atau rating yang diberikan oleh pengguna untuk buku tersebut.
-  9. ratings_count: Jumlah total rating yang diberikan oleh pengguna untuk buku tersebut.
-  10. medium_image_url: URL gambar medium untuk buku tersebut.
-  11. small_image_url: URL gambar kecil untuk buku tersebut.
-  12. desc: Deskripsi atau ringkasan dari buku tersebut.
-  13. genre: Genre atau kategori buku tersebut.
-  14. image_url: URL gambar utama untuk buku tersebut.
+1. book_id: ID unik untuk setiap buku dalam sistem rekomendasi.
+2. goodreads_book_id: ID buku yang terkait dengan platform Goodreads, dapat digunakan untuk mendapatkan informasi tambahan tentang buku dari Goodreads.
+3. authors: Nama-nama penulis dari buku tersebut.
+4. original_publication_year: Tahun publikasi asli dari buku tersebut.
+5. original_title: Judul asli dari buku tersebut (jika berbeda dengan judul terjemahan).
+6. title: Judul dari buku tersebut (dapat berupa judul terjemahan).
+7. language_code: Kode bahasa buku (misalnya, "en" untuk bahasa Inggris).
+8. average_rating: Rata-rata peringkat atau rating yang diberikan oleh pengguna untuk buku tersebut.
+9. ratings_count: Jumlah total rating yang diberikan oleh pengguna untuk buku tersebut.
+10. medium_image_url: URL gambar medium untuk buku tersebut.
+11. small_image_url: URL gambar kecil untuk buku tersebut.
+12. desc: Deskripsi atau ringkasan dari buku tersebut.
+13. genre: Genre atau kategori buku tersebut.
+14. image_url: URL gambar utama untuk buku tersebut.
+
 - ratings :
-  1. user_id: ID unik untuk setiap pengguna yang memberikan rating.
-  2. book_id: ID unik untuk buku yang diberikan rating.
-  3. rating: Peringkat atau rating yang diberikan oleh pengguna untuk buku tersebut.
+1. user_id: ID unik untuk setiap pengguna yang memberikan rating.
+2. book_id: ID unik untuk buku yang diberikan rating.
+3. rating: Peringkat atau rating yang diberikan oleh pengguna untuk buku tersebut.
 
 # Data Preparation
 Data preparation yang dilakukan memiliki beberapa langkah, yaitu:
@@ -66,9 +67,11 @@ Untuk pendekatan Content Based Filtering (CBF), langkah-langkahnya adalah sebaga
    
 ![h16GEOM5](https://github.com/risdaaaa/Book-recommendation/assets/147994396/41052821-4c42-4855-adae-69aa6700f02f)
 
+Gambar 1.Informasi buku
 
 ![25rw9peg](https://github.com/risdaaaa/Book-recommendation/assets/147994396/98c3e80b-8502-4278-8af8-2772bfa53255)
 
+Gambar 2.Hasil rekomendasi CF
 
 Sementara itu, pendekatan Collaborative Filtering (CF) melibatkan langkah-langkah berikut:
 1. Menggunakan model neural network untuk mempelajari pola rating dari pengguna terhadap buku.
@@ -85,4 +88,32 @@ Kedua pendekatan tersebut memiliki kelebihan dan kekurangan:
 Dengan mengintegrasikan kedua pendekatan ini, sistem rekomendasi dapat mengatasi kelemahan masing-masing pendekatan dan memberikan rekomendasi yang lebih baik secara keseluruhan.
 
 # Evaluation
+
+![TWr8-OdG](https://github.com/risdaaaa/Book-recommendation/assets/147994396/b810ba19-9ed2-4c09-a0ee-b5ae7d2e3088)
+
+Gambar 3.Grafik matrik
+
+Metrik evaluasi yang digunakan adalah Root Mean Squared Error (RMSE). Metrik ini ditambahkan saat model dikompilasi dengan `tf.keras.metrics.RootMeanSquaredError()` dan kemudian digunakan untuk mengukur performa model selama training dan validasi. RMSE memberikan informasi tentang seberapa dekat prediksi model dengan nilai sebenarnya, dengan penalti lebih besar untuk kesalahan yang lebih besar karena mengkuadratkan kesalahan sebelum menghitung rata-rata. Selama proses training, nilai RMSE untuk data training dan validasi divisualisasikan untuk memantau performa model dari waktu ke waktu. RMSE yang lebih rendah menunjukkan performa model yang lebih baik.
+
+Setelah melatih model, kita melakukan evaluasi rekomendasi buku untuk sample user:
+
+-Mengambil Sample User: Memilih satu user secara acak dari dataset ratings.
+-Menentukan Buku yang Belum Dibaca: Menentukan buku-buku yang belum dibaca oleh user tersebut.
+-Mempersiapkan Data untuk Prediksi: Meng-encode user dan buku, kemudian membuat array untuk prediksi.
+-Prediksi Rating: Model memprediksi rating untuk buku yang belum dibaca oleh user.
+-Top 5 Rekomendasi: Menentukan 5 buku dengan prediksi rating tertinggi.
+
+Hasil Rekomendasi
+Setelah menentukan buku dengan prediksi rating tertinggi, kita menampilkan hasil rekomendasi untuk user:
+
+![Q4cRUU6h](https://github.com/risdaaaa/Book-recommendation/assets/147994396/0d666f0d-3df7-42dc-bccd-032bd1a0ccda)
+
+Gambar 4.Hasil rekomendasi CBF
+
+Hasil rekomendasi merupakan top 5 judul buku yang direkomendasikan untuk user.
+
+
+# References
+
+[1] Mathew, M. P., Kuriakose, M. B., & Hegde, M. (2016). Book Recommendation System through content based and collaborative filtering method. IEEE Xplore , 6.
 
