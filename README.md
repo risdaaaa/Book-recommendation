@@ -5,6 +5,12 @@
 Sistem rekomendasi telah menjadi inti dari banyak platform online, memungkinkan pengguna untuk menemukan konten yang sesuai dengan minat dan preferensi mereka. Dua pendekatan yang umum digunakan dalam pengembangan sistem rekomendasi adalah Content Based Filtering (CBF) dan Collaborative Filtering (CF). Dalam CBF, rekomendasi didasarkan pada analisis terhadap atribut-atribut konten yang terkait dengan item yang direkomendasikan, seperti teks, metadata, atau fitur lainnya. Sebaliknya, CF mengandalkan pola perilaku pengguna untuk menghasilkan rekomendasi, dengan mengidentifikasi kesamaan antara preferensi pengguna yang serupa[[1]](https://ieeexplore.ieee.org/abstract/document/7684166?casa_token=oDbhmlwVkn8AAAAA:57XkjHpU74_TMag16JMEmzDyj3Hv2Ei0K12NHjfxTeIpF7GcZaFb2x9feWjD31r1lsjVLt61HAR-OT0). Penggabungan kedua pendekatan ini dapat meningkatkan kualitas rekomendasi dengan memperhitungkan baik konten item maupun interaksi pengguna. Oleh karena itu, penelitian ini bertujuan untuk membandingkan efektivitas kedua metode tersebut dalam konteks sistem rekomendasi buku, dengan harapan dapat memberikan wawasan yang berharga bagi pengembangan sistem rekomendasi yang lebih canggih dan personal.
 
 # Business Understanding
+Penerapan sistem rekomendasi buku dengan pendekatan Content Based Filtering (CBF) dan Collaborative Filtering (CF) memiliki dampak yang signifikan dari sudut pandang bisnis dan ekonomi. Sistem ini dapat meningkatkan penjualan dan pendapatan dengan memberikan rekomendasi buku yang lebih akurat dan relevan bagi pelanggan, yang pada gilirannya meningkatkan tingkat konversi penjualan. Pelanggan juga akan merasakan pengalaman yang lebih baik karena mereka dapat dengan mudah menemukan buku yang sesuai dengan minat mereka, meningkatkan kepuasan dan loyalitas mereka. Selain itu, bisnis dapat mengoptimalkan pengelolaan inventaris dan stok berdasarkan data preferensi pelanggan yang diperoleh, mengurangi kelebihan atau kekurangan stok. Secara kompetitif, teknologi rekomendasi yang canggih dapat menjadi keunggulan yang membedakan bisnis dalam pasar yang semakin digital dan kompetitif.
+
+Stakeholder yang diuntungkan dari sistem ini meliputi penerbit dan penjual buku yang mendapatkan wawasan lebih baik tentang preferensi pembaca, toko buku fisik dan online yang mengalami peningkatan penjualan, dan platform distribusi buku digital seperti Amazon Kindle dan Google Books yang dapat meningkatkan engagement pengguna. Konsumen akhir, yaitu pembaca, juga sangat diuntungkan dengan mendapatkan rekomendasi buku yang personal dan relevan, yang meningkatkan kepuasan dan kesenangan mereka dalam membaca. Penulis, terutama yang baru atau kurang dikenal, juga mendapatkan eksposur lebih besar karena buku mereka dapat direkomendasikan kepada pembaca yang tertarik dengan genre serupa.
+
+Penerapan sistem ini secara aplikatif dapat dilakukan dengan integrasi langsung ke dalam situs web atau aplikasi mobile penjual buku, menghadirkan fitur rekomendasi seperti "Buku yang Mungkin Anda Suka" atau "Pembaca Juga Membaca". Selain itu, hasil rekomendasi dapat digunakan untuk personalisasi email marketing dan notifikasi push kepada pengguna. Di toko buku fisik, sistem ini dapat digunakan untuk menata rak buku berdasarkan kategori yang paling diminati atau memasang perangkat interaktif yang membantu pelanggan menemukan buku berdasarkan minat mereka. Pengembangan aplikasi atau fitur tambahan yang memungkinkan pengguna membuat daftar bacaan, memberikan ulasan, dan menerima rekomendasi berbasis preferensi yang terus diperbarui juga merupakan langkah implementatif yang efektif. Dengan demikian, penelitian ini memiliki potensi besar untuk memberikan dampak positif yang luas bagi berbagai stakeholder dalam industri buku, meningkatkan efisiensi bisnis, pengalaman konsumen, dan pertumbuhan ekonomi di sektor penerbitan dan penjualan buku.
+
 ## Problem Statement
 Bagaimana cara menyajikan rekomendasi yang sesuai dengan minat dan preferensi pengguna secara akurat dan efisien.
 
@@ -23,7 +29,9 @@ Variabel-variabel pada The New Chapter(book recommendation system adalah sebagai
 - ratings : Variabel ini berisi informasi tentang peringkat atau rating yang diberikan oleh pengguna untuk buku-buku tertentu.
 - tags : Variabel ini mungkin berisi daftar tag-tag yang tersedia
 
-Pada projek kali ini variabel yang dipakai adalah
+Pada projek kali ini variabel yang dipakai adalah newbooks dan ratings.
+newbooks memiliki jumlah sampel data sebanyak 10000 dan 14 fitur, sedangkan ratings memiliki jumlah sampel data sebanyak 1048575 dan 3 fitur.
+
 - newbooks :
 1. book_id: ID unik untuk setiap buku dalam sistem rekomendasi.
 2. goodreads_book_id: ID buku yang terkait dengan platform Goodreads, dapat digunakan untuk mendapatkan informasi tambahan tentang buku dari Goodreads.
@@ -48,28 +56,63 @@ Pada projek kali ini variabel yang dipakai adalah
 # Data Preparation
 Data preparation yang dilakukan memiliki beberapa langkah, yaitu:
 
-- **Mengatasi Missing Value**: Langkah pertama adalah menghapus baris yang mengandung nilai yang hilang (missing value) dari dataframe `all`. Hal ini dilakukan dengan menggunakan metode `dropna()`. Kemudian, digunakan `isnull().sum()` untuk memeriksa apakah masih terdapat nilai yang hilang setelah penghapusan.
+1. **Mengatasi Missing Value**:
+- Missing value adalah data yang hilang atau tidak tersedia dalam dataset. Penanganan missing value penting karena data yang hilang dapat menyebabkan bias atau kesalahan dalam analisis data dan pemodelan.
+- Kegunaan penanganan missing value adalah:
+    a. Meningkatkan akurasi model
+    b. Meminimalkan bias
+    c. Memastikan integritas dataset
+- Teknik yang digunakan adalah `Drop missing values`, seluruh baris yang memiliki missing value akan dihapus dari dataset. Teknik ini dipilih karena asumsi bahwa data yang hilang tidak signifikan dalam jumlah dan menghapusnya tidak akan berdampak besar pada analisis keseluruhan.
+  
+2. **Pengurutan Data**
+- Pengurutan data dilakukan untuk mengatur data berdasarkan suatu kolom tertentu agar lebih mudah dianalisis dan diproses.
+- Kegunaan pengurutan data adalah mempermudah pencarian dan indexing data serta membantu dalam analisis yang memerlukan urutan tertentu.
+- Teknik yang digunakan adalah `Sort values`, data diurutkan berdasarkan kolom 'book_id' secara ascending untuk memastikan setiap buku memiliki urutan yang konsisten dan logis.
 
-- **Mengurutkan**: Data diurutkan berdasarkan kolom 'book_id' secara menaik (ascending) menggunakan fungsi `sort_values()`. Langkah ini membantu dalam memastikan bahwa data telah terurut sesuai dengan 'book_id' agar dapat diolah dengan lebih baik.
+3. **Penanganan Duplikasi Data**
+- Duplikasi data adalah kemunculan berulang dari data yang sama dalam dataset. Menghapus duplikasi penting untuk memastikan analisis yang akurat dan efisien.
+- Kegunaan penanganan duplikasi data adalah meningkatkan efisiensi analisis, mengurangi redundansi data dan meningkatkan kualitas dataset.
+- Teknik yang digunakan adalah `drop duplicates`, menghapus baris yang memiliki 'book_id' yang sama untuk memastikan setiap buku hanya muncul sekali dalam dataset.
+4. **Konversi Data Series ke Bentuk List**
+- Konversi data series ke dalam bentuk list dilakukan untuk mempermudah manipulasi dan analisis data lebih lanjut.
+- Kegunaan konversi data series ke list adalah mempermudah operasi manipulasi data serta memfasilitasi penggunaan data dalam berbagai algoritma dan model.
 
-- **Membuang Data Duplikat**: Data duplikat pada kolom 'book_id' dihapus menggunakan fungsi `drop_duplicates('book_id')`. Langkah ini dilakukan untuk memastikan bahwa setiap 'book_id' unik dan hanya ada satu baris data yang sesuai dengan setiap 'book_id'.
+5. **Pembuatan Dictionary**
+- Membuat dictionary dari data 'book_id', 'title', dan 'genre' bertujuan untuk menggabungkan informasi yang relevan tentang buku dalam satu struktur data yang terorganisir.
+- Kegunaan pembuatan dictionary adalah mempermudah akses dan manipulasi data serta menyediakan struktur data yang lebih terorganisir
 
-- **Konversi Data ke dalam Bentuk List**: Data pada kolom 'book_id', 'title', dan 'genre' dikonversi menjadi bentuk list menggunakan metode `tolist()`. Hal ini dilakukan untuk mempersiapkan data agar dapat digunakan dalam pembuatan dictionary.
-
-- **Membuat Dictionary**: Data yang telah dipersiapkan kemudian digabungkan dalam sebuah dataframe baru (`mybook`) yang berisi kolom 'book_id', 'title', dan 'genre'. Langkah ini bertujuan untuk memudahkan pengelolaan dan akses data dalam pembuatan sistem rekomendasi.
   
 # Modeling dan Result
 Sistem rekomendasi yang diimplementasikan dalam model ini terdiri dari dua pendekatan utama: Content Based Filtering (CBF) dan Collaborative Filtering (CF).
+
+### Collaborative Filtering (CF)
+
+Collaborative Filtering (CF) adalah pendekatan dalam sistem rekomendasi yang mendasarkan rekomendasinya pada interaksi antara pengguna dan item. CF menggunakan data dari banyak pengguna untuk menemukan pola dan memberikan rekomendasi berdasarkan kesamaan preferensi antar pengguna. Sistem ini bekerja dengan mengumpulkan data tentang interaksi pengguna dengan item, seperti rating, pembelian, atau ulasan. Setelah itu, sistem mencari kesamaan antara pengguna (User-Based CF) atau item (Item-Based CF). Misalnya, pengguna yang memiliki pola rating yang mirip akan dianggap serupa. Akhirnya, sistem merekomendasikan item yang disukai oleh pengguna yang serupa atau item yang memiliki pola interaksi yang mirip dengan item yang disukai pengguna. CF mampu menemukan hubungan yang kompleks dan mengatasi keterbatasan fitur spesifik dari item. Namun, CF menghadapi tantangan seperti cold start problem, di mana sulit memberikan rekomendasi kepada pengguna baru yang belum memiliki cukup interaksi atau item baru yang belum banyak diulas, serta masalah skalabilitas jika jumlah pengguna dan item sangat besar.
+
+### Content Based Filtering (CBF)
+
+Content Based Filtering (CBF) adalah pendekatan dalam sistem rekomendasi yang mendasarkan rekomendasinya pada karakteristik atau fitur dari item yang ada. Dalam konteks rekomendasi buku, fitur-fitur ini bisa berupa genre, penulis, deskripsi, atau atribut lain yang melekat pada buku. Sistem ini bekerja dengan membuat profil pengguna berdasarkan preferensi mereka terhadap fitur-fitur tertentu. Misalnya, jika seorang pengguna sering membaca buku fiksi ilmiah, profil mereka akan mencerminkan preferensi ini. Selanjutnya, setiap buku dianalisis berdasarkan fitur-fiturnya, seperti genre, penulis, dan deskripsi. Sistem kemudian mencocokkan profil pengguna dengan fitur-fitur buku yang tersedia, dan buku yang memiliki fitur yang mirip dengan preferensi pengguna akan direkomendasikan. Keuntungan utama dari CBF adalah personalisasi yang tinggi, di mana rekomendasi sangat sesuai dengan preferensi individu pengguna, dan independensi dari data pengguna lain. Namun, pendekatan ini terbatas pada fitur yang diketahui dan mungkin kurang efektif jika pengguna memiliki preferensi yang sangat bervariasi.
 
 Untuk pendekatan Content Based Filtering (CBF), langkah-langkahnya adalah sebagai berikut:
 1. Penggunaan TfidfVectorizer untuk menghitung nilai TF-IDF dari data genre buku. Ini membantu dalam menganalisis konten buku dan memahami preferensi pengguna berdasarkan genre.
 2. Menggunakan cosine similarity untuk mengukur kemiripan antara buku berdasarkan nilai TF-IDF dari genre. Dengan demikian, sistem dapat merekomendasikan buku yang memiliki genre yang mirip dengan buku yang disukai pengguna.
    
 ![h16GEOM5](https://github.com/risdaaaa/Book-recommendation/assets/147994396/41052821-4c42-4855-adae-69aa6700f02f)
+| book_id  |  title | genre  | 
+|---|---|---|
+|  3869 |  Vernom God Little | fiction  |
 
 Gambar 1.Informasi buku
 
 ![25rw9peg](https://github.com/risdaaaa/Book-recommendation/assets/147994396/98c3e80b-8502-4278-8af8-2772bfa53255)
+|  title | genre  |  
+|---|---|
+|  Infite Jest |  fiction | 
+| Back When We Were Grownups  |  fiction |  
+| True History of the Kelly Gang  |  fiction |   
+| The Day of the Locust  | fiction  |
+|  The End (A Series of Unfortunate Events, #13) | fiction  |
+
 
 Gambar 2.Hasil rekomendasi CF
 
