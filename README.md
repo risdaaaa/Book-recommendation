@@ -96,15 +96,14 @@ Content Based Filtering (CBF) adalah pendekatan dalam sistem rekomendasi yang me
 Untuk pendekatan Content Based Filtering (CBF), langkah-langkahnya adalah sebagai berikut:
 1. Penggunaan TfidfVectorizer untuk menghitung nilai TF-IDF dari data genre buku. Ini membantu dalam menganalisis konten buku dan memahami preferensi pengguna berdasarkan genre.
 2. Menggunakan cosine similarity untuk mengukur kemiripan antara buku berdasarkan nilai TF-IDF dari genre. Dengan demikian, sistem dapat merekomendasikan buku yang memiliki genre yang mirip dengan buku yang disukai pengguna.
-   
-![h16GEOM5](https://github.com/risdaaaa/Book-recommendation/assets/147994396/41052821-4c42-4855-adae-69aa6700f02f)
+
+
 | book_id  |  title | genre  | 
 |---|---|---|
 |  3869 |  Vernom God Little | fiction  |
 
 Gambar 1.Informasi buku
 
-![25rw9peg](https://github.com/risdaaaa/Book-recommendation/assets/147994396/98c3e80b-8502-4278-8af8-2772bfa53255)
 |  title | genre  |  
 |---|---|
 |  Infite Jest |  fiction | 
@@ -140,11 +139,11 @@ Metrik evaluasi yang digunakan adalah Root Mean Squared Error (RMSE). Metrik ini
 
 Setelah melatih model, kita melakukan evaluasi rekomendasi buku untuk sample user:
 
--Mengambil Sample User: Memilih satu user secara acak dari dataset ratings.
--Menentukan Buku yang Belum Dibaca: Menentukan buku-buku yang belum dibaca oleh user tersebut.
--Mempersiapkan Data untuk Prediksi: Meng-encode user dan buku, kemudian membuat array untuk prediksi.
--Prediksi Rating: Model memprediksi rating untuk buku yang belum dibaca oleh user.
--Top 5 Rekomendasi: Menentukan 5 buku dengan prediksi rating tertinggi.
+- Mengambil Sample User: Memilih satu user secara acak dari dataset ratings.
+- Menentukan Buku yang Belum Dibaca: Menentukan buku-buku yang belum dibaca oleh user tersebut.
+- Mempersiapkan Data untuk Prediksi: Meng-encode user dan buku, kemudian membuat array untuk prediksi.
+- Prediksi Rating: Model memprediksi rating untuk buku yang belum dibaca oleh user.
+- Top 5 Rekomendasi: Menentukan 5 buku dengan prediksi rating tertinggi.
 
 Hasil Rekomendasi
 Setelah menentukan buku dengan prediksi rating tertinggi, kita menampilkan hasil rekomendasi untuk user:
@@ -155,6 +154,7 @@ Gambar 4.Hasil rekomendasi CBF
 
 Hasil rekomendasi merupakan top 5 judul buku yang direkomendasikan untuk user.
 
+Proyek ini berhasil mencapai tujuan utamanya yaitu mengembangkan sistem rekomendasi buku yang akurat dan efisien. Beberapa indikator keberhasilan proyek ini meliputi penurunan RMSE yang konsisten selama pelatihan, menunjukkan bahwa model belajar dengan baik dan menghasilkan prediksi yang lebih akurat seiring waktu. Selain itu, buku yang direkomendasikan sesuai dengan preferensi pengguna, menunjukkan bahwa model berhasil memahami pola dan preferensi pengguna. Dalam hal solusi yang diinginkan dan problem statement, hasil evaluasi menunjukkan bahwa model dapat memberikan rekomendasi yang relevan dan akurat, sesuai dengan preferensi pengguna, yang diindikasikan oleh nilai RMSE yang rendah pada data validasi. Selain itu, sistem rekomendasi ini juga efisien dalam hal proses pelatihan dan prediksi, memungkinkan pengguna untuk mendapatkan rekomendasi secara cepat. Kesimpulannya, proyek ini dianggap berhasil karena telah mencapai tujuan yang diinginkan, yaitu mengembangkan sistem rekomendasi buku yang akurat dan efisien. Sistem ini mampu menyelesaikan masalah utama dalam memberikan rekomendasi buku yang relevan kepada pengguna, sehingga meningkatkan pengalaman membaca dan potensi peningkatan penjualan buku.
 
 # References
 
