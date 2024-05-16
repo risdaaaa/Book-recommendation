@@ -196,11 +196,9 @@ Hasil top 5 rekomendasi berdasarkan algoritma content based filtering adalah seb
 
 Gambar 8. Hasil rekomendasi CF
 
-Berdasarkan hasil rekomendasi Collaborative Filtering (CF), diketahui bahwa *Vernon God Little* merupakan genre fiksi. Dari 5 judul yang direkomendasikan, semuanya memiliki genre fiksi. Artinya, precision sistem adalah 5/5 atau 100%.
+$$ P = \frac{\text{number of our recommendations that are relevant}}{\text{number of items we recommended}} $$
 
-![dos_819311f78d87da1e0fd8660171fa58e620211012160253 (1)](https://github.com/risdaaaa/Book-recommendation/assets/147994396/5307680e-ddcc-40f9-85c9-0b485eef93fc)
-
-Gambar 9. Rumus precision
+Berdasarkan hasil rekomendasi Collaborative Filtering (CF), diketahui bahwa *Vernon God Little* merupakan genre fiksi. Dari 5 judul yang direkomendasikan, semuanya memiliki genre fiksi. Artinya, precision sistem adalah 5/5 atau 100%. Hasil proyek berdasarkan metrik evaluasi precision ini menunjukkan bahwa sistem CF berhasil dalam memberikan rekomendasi yang sesuai dengan preferensi pengguna, dalam hal ini, genre buku fiksi. Ini menunjukkan bahwa sistem rekomendasi CF dapat menjadi solusi yang efektif dalam membantu pengguna menemukan konten yang relevan dan sesuai dengan minat mereka.
 
 2. Hasil evaluasi untuk collaborative filtering
 Setelah menentukan buku dengan prediksi rating tertinggi, kita menampilkan hasil rekomendasi untuk user:
@@ -214,14 +212,14 @@ Setelah menentukan buku dengan prediksi rating tertinggi, kita menampilkan hasil
 | Harry Potter and the Deathly Hallows (Harry Potter, #7)  | J.K. Rowling, Mary GrandPré  |
 |  The Naming (The Books of Pellinor, #1) | Alison Croggon  |
 
-Gambar 10. Hasil rekomendasi CBF
+Gambar 9. Hasil rekomendasi CBF
 
 Hasil rekomendasi merupakan top 5 judul buku yang direkomendasikan untuk user.
 
 
 ![TWr8-OdG](https://github.com/risdaaaa/Book-recommendation/assets/147994396/b810ba19-9ed2-4c09-a0ee-b5ae7d2e3088)
 
-Gambar 11.Grafik matrik
+Gambar 10.Grafik matrik
 
 Metrik evaluasi yang digunakan adalah Root Mean Squared Error (RMSE). Metrik ini ditambahkan saat model dikompilasi dengan `tf.keras.metrics.RootMeanSquaredError()` dan kemudian digunakan untuk mengukur performa model selama training dan validasi. RMSE memberikan informasi tentang seberapa dekat prediksi model dengan nilai sebenarnya, dengan penalti lebih besar untuk kesalahan yang lebih besar karena mengkuadratkan kesalahan sebelum menghitung rata-rata. Selama proses training, nilai RMSE untuk data training dan validasi divisualisasikan untuk memantau performa model dari waktu ke waktu. RMSE yang lebih rendah menunjukkan performa model yang lebih baik.
 
